@@ -1,77 +1,51 @@
-import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import React, { useState } from 'react';
-import MyButton from './button';
+import Button from './button';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { handleBtnClick, handelEquals, handleBackSpace, handleReset } from '../utils/functions';
 export default function Calci() {
+    const math = require('mathjs');
     const [result, setResult] = useState("")
-    const handleBtnClick = (e) => {
-        setResult(result + e)
-    }
-    const handleReset = () => {
-        setResult("")
-    }
-    const handleBackSpace = () => {
-        setResult(result.substring(0, result.length - 1))
-    }
-    const handelEquals = () => {
-        try {
-            setResult((eval(result)).toString())
-        } catch (error) {
-            timeOutDisplay("ErroR", 300)
-            timeOutDisplay(" ", 1200)
-        }
-    }
-
-    const timeOutDisplay = (props, time) => {
-        setTimeout(() => {
-            setResult(props)
-        }, time);
-    }
     const myIcon = <Icon name="arrow-left" size={25} color="#ffffff" />;
     return (
         <View style={styles.container}>
-            <Text style={{ fontSize: 45, marginVertical: 20, color: 'white' }}>Calculator</Text>
-            <View style={styles.displayView}>
-                <Text style={{ fontSize: 30,textAlign:'right'}}>{result}</Text>
-            </View>
-            <View style={styles.btnWrapper}>
-                <View style={styles.row}>
-                    <View>
-                        <View style={styles.row}>
-                            <MyButton myStyle={{ width: 145 }} onClick={handleReset}>Clear</MyButton>
-                            <MyButton onClick={handleBackSpace}>{myIcon}</MyButton>
-                        </View>
-                        <View style={styles.row}>
-                            <MyButton onClick={() => { handleBtnClick(7) }}>7</MyButton>
-                            <MyButton onClick={() => { handleBtnClick(8) }}>8</MyButton>
-                            <MyButton onClick={() => { handleBtnClick(9) }}>9</MyButton>
-                        </View>
-                        <View style={styles.row}>
-                            <MyButton onClick={() => { handleBtnClick(4) }}>4</MyButton>
-                            <MyButton onClick={() => { handleBtnClick(5) }}>5</MyButton>
-                            <MyButton onClick={() => { handleBtnClick(6) }}>6</MyButton>
-                        </View>
-                        <View style={styles.row}>
-                            <MyButton onClick={() => { handleBtnClick(1) }}>1</MyButton>
-                            <MyButton onClick={() => { handleBtnClick(2) }}>2</MyButton>
-                            <MyButton onClick={() => { handleBtnClick(3) }}>3</MyButton>
-                        </View>
+            <Text style={styles.header}>Calculator</Text>
+            <View style={styles.calcBody}>
+                <View style={styles.displayView}>
+                    <Text style={{ fontSize: 30, textAlign: 'right', color: 'white' }}>{result}</Text>
+                </View>
+                <View style={styles.btnWrapper}>
+                    <View style={styles.row}>
+                        <Button myStyle={{ width: "47%" }} onClick={()=>handleReset(setResult)}>Clear</Button>
+                        <Button onClick={()=>handleBackSpace(setResult,result)}>{myIcon}</Button>
+                        <Button onClick={() => { handleBtnClick("+",setResult,result) }}>+</Button>
                     </View>
-                    <View>
-                        <MyButton onClick={() => { handleBtnClick("+") }}>+</MyButton>
-                        <MyButton onClick={() => { handleBtnClick("-") }}>-</MyButton>
-                        <MyButton onClick={() => { handleBtnClick("*") }}>x</MyButton>
-                        <MyButton onClick={() => { handleBtnClick("/") }}>&divide;</MyButton>
+                    <View style={styles.row}>
+                        <Button onClick={() => { handleBtnClick(7,setResult,result) }}>7</Button>
+                        <Button onClick={() => { handleBtnClick(8,setResult,result) }}>8</Button>
+                        <Button onClick={() => { handleBtnClick(9,setResult,result) }}>9</Button>
+                        <Button onClick={() => { handleBtnClick("-",setResult,result) }}>-</Button>
+                    </View>
+                    <View style={styles.row}>
+                        <Button onClick={() => { handleBtnClick(4,setResult,result) }}>4</Button>
+                        <Button onClick={() => { handleBtnClick(5,setResult,result) }}>5</Button>
+                        <Button onClick={() => { handleBtnClick(6,setResult,result) }}>6</Button>
+                        <Button onClick={() => { handleBtnClick("*",setResult,result) }}>x</Button>
+                    </View>
+                    <View style={styles.row}>
+                        <Button onClick={() => { handleBtnClick(1,setResult,result) }}>1</Button>
+                        <Button onClick={() => { handleBtnClick(2,setResult,result) }}>2</Button>
+                        <Button onClick={() => { handleBtnClick(3,setResult,result) }}>3</Button>
+                        <Button onClick={() => { handleBtnClick("/",setResult,result) }}>&divide;</Button>
+                    </View>
+                    <View style={styles.row}>
+                        <Button onClick={() => { handleBtnClick(".",setResult,result) }}>.</Button>
+                        <Button onClick={() => { handleBtnClick(0,setResult,result) }}>0</Button>
+                        <Button myStyle={{ width: "47%" }} onClick={()=>handelEquals(setResult,result)}>=</Button>
                     </View>
                 </View>
-                <View style={styles.row}>
-                    <MyButton onClick={() => { handleBtnClick(".") }}>.</MyButton>
-                    <MyButton onClick={() => { handleBtnClick(0) }}>0</MyButton>
-                    <MyButton myStyle={{ width: 145 }} onClick={handelEquals}>=</MyButton>
-                </View>
             </View>
-            <StatusBar backgroundColor="#5a339c" />
+            <StatusBar backgroundColor="rgba(6, 0, 23, 1)" />
         </View>
     )
 }
@@ -79,24 +53,41 @@ export default function Calci() {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        backgroundColor: '#5a339c',
-        alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: 'rgba(6, 0, 23, 1)',
+        justifyContent: 'space-between'
+    },
+    header: {
+        fontSize: 45,
+        color: 'white',
+        marginTop: 20,
+        textAlign: 'center'
+    },
+    calcBody: {
+        height: '80%',
+        paddingTop: 20,
     },
     displayView: {
-        backgroundColor: '#8861c9',
-        width: 310,
+        marginHorizontal: 'auto',
+        backgroundColor: '#1C1223',
+        borderWidth: 0.3,
+        borderColor: '#494949',
+        borderRadius: 20,
+        height: 100,
+        width: "90%",
         padding: 10,
-        fontSize:25,
-        paddingVertical:20,
-        borderRadius: 10,
-        marginBottom: 10
+        fontSize: 25,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        marginBottom: 20
     },
     btnWrapper: {
-        padding: 10
+        padding: 10,
+        gap: 10
     },
     row: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        width: "100vw",
+        justifyContent: "space-evenly"
     },
     box: {
         height: 100,

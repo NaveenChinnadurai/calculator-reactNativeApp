@@ -10,14 +10,14 @@ export default function MyButton({ children, myStyle, onClick }) {
 
 const style = StyleSheet.create({
   button: {
-    width: 70,
-    height: 70,
+    width:"23%",
+    paddingVertical:20,
     borderRadius: 10,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor: '#24025e',
-    marginVertical: 5,
-    marginHorizontal: 3,
+    backgroundColor: '#0D0017',
+    borderWidth:0.1,
+    borderColor:'white'
   },
   txt:{
     fontSize: 30,
