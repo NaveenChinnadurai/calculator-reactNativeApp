@@ -21,7 +21,7 @@ export const handelEquals = (functions,val) => {
     }
 }
 
-const timeOutDisplay = (props, time) => {
+const timeOutDisplay = (props, time,funtions) => {
     setTimeout(() => {
         functions(props)
     }, time);

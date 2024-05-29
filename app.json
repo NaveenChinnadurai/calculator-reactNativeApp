@@ -4,11 +4,11 @@
     "slug": "calculator-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/introIcon.png",
+    "icon": "./assets/Images/icon.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "backgroundColor": "#ffffff",
-      "resizeMode":"cover"
+      "resizeMode": "cover"
     },
     "userInterfaceStyle": "light",
     "assetBundlePatterns": [
@@ -19,19 +19,27 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo1.jpg",
+        "foregroundImage": "./assets/Images/icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.naveenchinnadurai.calculatorapp"
     },
     "web": {
-      "favicon": "./assets/logo1.jpg"
+      "favicon": "./assets/Images/icon.png"
     },
     "extra": {
       "eas": {
         "projectId": "d0a384da-1808-4ac6-8577-d30e332ef2de"
       }
     },
-    "owner": "naveenchinnadurai"
+    "owner": "naveenchinnadurai",
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/Poppins_400Regular.ttf"]
+        }
+      ]
+    ]
   }
 }
