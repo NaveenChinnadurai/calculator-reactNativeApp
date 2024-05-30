@@ -10,10 +10,10 @@ A calculator capable of performing basic arithmetic operations, including additi
 
 ### Sample pictures
 
-<div style="display: flex; justify-content: space-between;">
-  <img src="assets/images/demoImages/preview1.jpg" alt="Screenshot 1" width="30%" style="margin-right: 10px;">
-  <img src="assets/images/demoImages/preview2.jpg" alt="Screenshot 1" width="30%" style="margin-right: 10px;">
-  <img src="assets/images/demoImages/preview3.jpg" alt="Screenshot 1" width="30%" style="margin-right: 10px;">
+<div style="display: flex; justify-content: center;">
+  <img src="assets/Images/demoImages/preview1.jpg" alt="Screenshot_1" width="32%">
+  <img src="assets/Images/demoImages/preview2.jpg" alt="Screenshot_2" width="32%">
+  <img src="assets/Images/demoImages/preview3.jpg" alt="Screenshot_3" width="32%">
 </div>
 
 #### Packages used
